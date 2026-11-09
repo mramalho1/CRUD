@@ -1,43 +1,30 @@
-//Importar a biblioteca json-server
+// Importar a biblioteca json-server
 const jsonServer = require('json-server');
+const path = require('path');
 
-// Criar um instancia do servidor JsonServer 
-//Essa instancia é usada para criar e configurar o servidor
+// Criar uma instância do servidor JsonServer 
 const server = jsonServer.create();
 
-//Criar um roteador com o arquivo db.json 
-//O roteador define as rotas do servidor. Ele utiliza um arquivo JSON para gerar a rota.
+// Criar um roteador com o arquivo db.json 
 const router = jsonServer.router('db.json');
 
-//Funções que são executadas em cada requisição feita com o servidor
-//Importa os padrões JsonServer
-const middlewares = jsonServer.defaults();
+// Importa os middlewares padrões do JsonServer
+const middlewares = jsonServer.defaults({
+  // Isso já faz o json-server servir a sua pasta 'public' automaticamente!
+  static: path.join(__dirname, 'public')
+});
 
-//Funções que são executadas em cada requisição feita com o servidor
+// Configura os middlewares padrões
 server.use(middlewares);
 
-//Define a porta em que o servidor irá rodar
-const porta = 3000;
+// O Render define a porta automaticamente pela variável de ambiente process.env.PORT
+// Se não houver (como no seu computador local), ele usa a 3000
+const porta = process.env.PORT || 3000;
 
-//Usa o roteador criado
+// Usa o roteador criado
 server.use(router);
 
-//Importa o módulo express
-const express = require('express');
-
-//Criando variavel instancia do express
-const app = express();
-
-//Configura o servidor para usar
-app.use(express.static('public'));
-
-//Defini a rota principal
-//Enviando o arquivo index.html
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
-})
-
-//Inicia o servidor na porta definida e exibe uma mensagem no console
-server.listen(porta, () => {
-    console.log(`JSON SERVER está rodando em http://localhost:${porta}`);
-})
+// Inicia o servidor escutando em '0.0.0.0' (obrigatório para o Render)
+server.listen(porta, '0.0.0.0', () => {
+    console.log(`JSON SERVER está rodando na porta ${porta}`);
+});
