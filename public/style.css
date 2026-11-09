@@ -1,0 +1,140 @@
+/* Importando uma fonte parecida com a da Amazon (opcional) */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-color: #fff;
+    color: #111;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Esconde as quebras de linha (<br>) para o CSS controlar o espaçamento */
+br {
+    display: none;
+}
+
+/* Estilo do Container principal (O "Card" da Amazon) */
+form {
+    width: 100%;
+    max-width: 350px; /* Largura padrão de login da Amazon */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px 26px;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Labels (Textos acima dos inputs) */
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    padding-left: 2px;
+}
+
+/* Inputs de texto e senha */
+input[type="text"], 
+input[type="password"], 
+input[type="number"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 7px 10px;
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+/* Efeito de foco inspirado na Amazon (borda laranja com sombra) */
+input[type="text"]:focus, 
+input[type="password"]:focus, 
+input[type="number"]:focus {
+    border-color: #e77600;
+    box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
+}
+
+/* Inputs bloqueados (readonly) */
+input[readonly] {
+    background-color: #f3f3f3;
+    color: #555;
+    border-color: #ddd;
+}
+
+/* Botões Estilo Amazon */
+button {
+    width: 100%;
+    background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+    border: 1px solid;
+    border-color: #a88734 #9c7e31 #846a29;
+    border-radius: 3px;
+    color: #111;
+    padding: 8px 0;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.4) inset;
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #f5d78e, #eeb933);
+}
+
+button:active {
+    background: #f0c14b;
+    box-shadow: 0 1px 3px rgba(0,0,0,.2) inset;
+}
+
+/* Estilo para links */
+a {
+    color: #0066c0;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #c45500;
+    text-decoration: underline;
+}
+
+p {
+    font-size: 13px;
+}
+
+/* Ajustes específicos para a página de Admin (Botões lado a lado) */
+form button[type="button"],
+form button[type="reset"],
+form button[onclick="atualizarDados()"],
+form button[onclick="deletarDados()"] {
+    width: 48%; /* Coloca dois botões por linha */
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Botão solto fora do form (Ex: "Pág de Admin") */
+body > button {
+    max-width: 350px;
+    background: #e3e3e3;
+    border-color: #adb1b8 #a2a6ac #8d9096;
+}
+
+body > button:hover {
+    background: #d9d9d9;
+}
+
+td{
+    background-color: #f0c14b;
+}

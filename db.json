@@ -1,0 +1,31 @@
+{
+  "pessoas": [
+    {
+      "nome": "Matheus",
+      "sobrenome": "Ramalho",
+      "cpf": "14414414414",
+      "email": "matheus@gmail.com",
+      "senha": "12345",
+      "cep": "08790660",
+      "rua": "Rua Professora Maria Aparecida Richa",
+      "cidade": "Mogi das Cruzes",
+      "estado": "SP",
+      "telefone": "1444444",
+      "id": "jGUJEya1-0o",
+      "admin": 1
+    },
+    {
+      "nome": "Estação",
+      "sobrenome": "Jundiapeba",
+      "cpf": "10010010014",
+      "email": "estudantes@gmail.com",
+      "senha": "12345",
+      "cep": "08790660",
+      "rua": "yuri",
+      "cidade": "Mogi",
+      "estado": "SP",
+      "telefone": "1111111",
+      "id": "8O7ARYZ"
+    }
+  ]
+}

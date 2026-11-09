@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tela de Administrador</h1>
+    <br>
+
+    <form action="">
+
+        <label for="">ID</label>
+        <br>
+        <input type="text" id="id" readonly>
+
+        <br><br>
+
+        <label for="">CPF</label>
+        <br>
+        <input type="text" id="cpf">
+        
+        <br><br>
+
+        <label for="">Nome</label>
+        <br>
+        <input type="text" id="nome">
+
+        <br><br>
+
+        <label for="">Sobrenome</label>
+        <br>
+        <input type="text" id="sobrenome">
+
+        <br><br>
+
+        <label for="">E-mail</label>
+        <br>
+        <input type="text" id="email">
+
+        <br><br>
+
+        <label for="">Senha</label>
+        <br>
+        <input type="text" id="senha">
+
+        <br><br>
+
+        <label for="">Rua</label>
+        <br>
+        <input type="text" id="rua">
+
+        <br><br>
+
+        <label for="">CEP</label>
+        <br>
+        <input type="number" id="cep">
+
+        <br><br>
+
+        <label for="">Cidade</label>
+        <br>
+        <input type="text" id="cidade">
+
+        <br><br>
+
+        <label for="">Estado</label>
+        <br>
+        <input type="text" id="estado">
+
+        <br><br>
+
+        <label for="">Telefone</label>
+        <br>
+        <input type="text" id="telefone">
+
+        <br><br>
+
+        <button type="button" onclick="buscarDados()">Buscar</button>
+        <button onclick="atualizarDados()">Atualizar</button>
+        <button onclick="deletarDados()">Deletar</button>
+        <button type="reset">Limpar</button>
+
+    </form>
+        <br><br><br>
+    <center>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Nome</td>
+                <td>Sobrenome</td>
+                <td>CPF</td>
+                <td>E-mail</td>
+                <td>Rua</td>
+                <td>CEP</td>
+                <td>Cidade</td>
+                <td>Estado</td>
+                <td>Telefone</td>
+            </tr>
+        </thead>
+        <tbody id="tabela-corpo"></tbody>
+    </table>
+    </center>
+        <br><br>
+        <a href="index.html">Voltar para a tela de login</a>
+        <script src="admin.js"></script>
+</body>
+</html>
