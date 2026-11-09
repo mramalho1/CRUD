@@ -17,7 +17,7 @@ const middlewares = jsonServer.defaults();
 server.use(middlewares);
 
 //Define a porta em que o servidor irá rodar
-const porta = 3000;
+const porta = process.env.PORT;
 
 //Usa o roteador criado
 server.use(router);
