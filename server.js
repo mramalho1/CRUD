@@ -17,5 +17,5 @@ server.use(router);
 
 server.listen(port, () => {
     console.log(`▶ Servidor ativo na porta ${port}`);
-    console.log(`Acesse: http://localhost:${port}/index.html`);
+    console.log(`Acesse: http://localhost:${port}`);
 });
