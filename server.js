@@ -1,43 +1,31 @@
-//Importar a biblioteca json-server
+// Importa as bibliotecas
 const jsonServer = require('json-server');
-
-// Criar um instancia do servidor JsonServer 
-//Essa instancia é usada para criar e configurar o servidor
-const server = jsonServer.create();
-
-//Criar um roteador com o arquivo db.json 
-//O roteador define as rotas do servidor. Ele utiliza um arquivo JSON para gerar a rota.
-const router = jsonServer.router('db.json');
-
-//Funções que são executadas em cada requisição feita com o servidor
-//Importa os padrões JsonServer
-const middlewares = jsonServer.defaults();
-
-//Funções que são executadas em cada requisição feita com o servidor
-server.use(middlewares);
-
-//Define a porta em que o servidor irá rodar
-const porta = process.env.PORT;
-
-//Usa o roteador criado
-server.use(router);
-
-//Importa o módulo express
 const express = require('express');
 
-//Criando variavel instancia do express
-const app = express();
+// Cria a instância do servidor
+const server = jsonServer.create();
+const router = jsonServer.router('db.json');
+const middlewares = jsonServer.defaults();
 
-//Configura o servidor para usar
-app.use(express.static('public'));
+// Define a porta (preparado para o Render e Local)
+const porta = process.env.PORT || 3000;
 
-//Defini a rota principal
-//Enviando o arquivo index.html
-app.get('/', function(req, res) {
+// Usa os middlewares padrão do json-server
+server.use(middlewares);
+
+// Configura o servidor para usar a pasta 'public' (Tudo unificado no 'server')
+server.use(express.static('public'));
+
+// Define a rota principal enviando o index.html
+server.get('/', function(req, res) {
     res.sendFile(__dirname + '/public/index.html');
-})
+});
 
-//Inicia o servidor na porta definida e exibe uma mensagem no console
+// IMPORTANTE: O router DEVE ser configurado por último!
+// Se ele ficar antes do 'express.static', o json-server bloqueia o front-end.
+server.use(router);
+
+// Inicia o servidor
 server.listen(porta, () => {
-    console.log(`JSON SERVER está rodando em http://localhost:${porta}`);
-})
+    console.log(`Servidor rodando na porta ${porta}`);
+});
