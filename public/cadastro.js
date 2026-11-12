@@ -4,6 +4,7 @@ const preencherFormulario = (endereco) => {
     document.getElementById("cidade").value = endereco.localidade;
     document.getElementById("estado").value = endereco.uf;
 }
+
 //autopreenchimento
 const cepValido = (cep) => {
     if (cep.length == 8) {
@@ -12,10 +13,12 @@ const cepValido = (cep) => {
         return false;
     }
 }
+
 //buscar API
 const pesquisarCep = async () => {
     const cep = document.getElementById("cep").value;
-    const url = `http://viacep.com.br/ws/${cep}/json/`;
+    // CORREÇÃO: Alterado de http para https para funcionar no Render
+    const url = `https://viacep.com.br/ws/${cep}/json/`; 
     if (cepValido(cep)) {
         const dados = await fetch(url);
         const endereco = await dados.json();
@@ -36,7 +39,8 @@ function cadastrar(){
     let estado = document.getElementById('estado').value
     let telefone = document.getElementById('telefone').value
     
-    fetch('/pessoas'', {
+    // CORREÇÃO: Removida a aspa extra que estava quebrando o código
+    fetch('/pessoas', { 
         method: 'POST', // Método HTTP utilizando o POST
         headers: {
             'Content-Type': 'application/json' // Tipo do conteúdo enviado JSON
