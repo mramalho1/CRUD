@@ -1,63 +1,4 @@
-function buscarDados() {
-    var cpf = document.getElementById('cpf').value 
-
-
-    fetch('http://localhost:3000/pessoas', {
-        method: 'GET'
-    }).then(resposta => resposta.json()).then(dados => {
-        let pessoaEncontrada = dados.find(pessoa => pessoa.cpf == cpf)
-
-
-        if(pessoaEncontrada) {
-            document.getElementById('id').value = pessoaEncontrada.id
-            document.getElementById('nome').value = pessoaEncontrada.nome
-            document.getElementById('sobrenome').value = pessoaEncontrada.sobrenome
-            document.getElementById('cpf').value = pessoaEncontrada.cpf
-            document.getElementById('email').value = pessoaEncontrada.email
-            document.getElementById('senha').value = pessoaEncontrada.senha
-            document.getElementById('cep').value = pessoaEncontrada.cep
-            document.getElementById('rua').value = pessoaEncontrada.rua
-            document.getElementById('cidade').value = pessoaEncontrada.cidade
-            document.getElementById('estado').value = pessoaEncontrada.estado
-            document.getElementById('telefone').value = pessoaEncontrada.telefone
-        } else {
-            alert("Pessoa não encontrada")
-        }
-    })
-}
-
-function atualizarDados() {
-    let id = document.getElementById('id').value
-    let nome = document.getElementById('nome').value
-    let sobrenome = document.getElementById('sobrenome').value
-    let cpf = document.getElementById('cpf').value
-    let email = document.getElementById('email').value
-    let senha = document.getElementById('senha').value
-    let cep = document.getElementById('cep').value
-    let rua = document.getElementById('rua').value
-    let cidade = document.getElementById('cidade').value
-    let estado = document.getElementById('estado').value
-    let telefone = document.getElementById('telefone').value
-
-
-    fetch(`http://localhost:3000/pessoas/${id}`, {
-        method: 'PUT', //Metodo PUT HTTP
-        headers: {
-            'Content-Type': 'application/json' //Tipo de conteudo enviado JSON
-        },
-        body: JSON.stringify({nome: nome, sobrenome: sobrenome, cpf: cpf, email: email, senha: senha, cep: cep, rua: rua, cidade: cidade, estado: estado, telefone: telefone}) //Dados a serem enviados e convertidos
-    }).then(resposta => resposta.JSON) //Converte a resposta para JSON
-}
-
-function deletarDados(){
-    let id = document.getElementById('id').value
-
-    fetch(`http://localhost:3000/pessoas/${id}`, {
-        method: 'DELETE'
-    }).then(resposta => resposta.json())
-}
-
-fetch('http://localhost:3000/pessoas')
+fetch('/pessoas')
     .then(resposta => resposta.json())
     .then(dados => {
         // Selecionar a tabela tbody
@@ -65,7 +6,7 @@ fetch('http://localhost:3000/pessoas')
 
         // Para cada objeto do JSON, cria uma linha da tabela
         dados.forEach(objeto => {
-            // CRIANDO A LINHA DA TABELA AQUI (Faltava esta linha!)
+            // CRIANDO A LINHA DA TABELA AQUI
             var tr = document.createElement('tr'); 
 
             var tdId = document.createElement('td');
@@ -108,18 +49,13 @@ fetch('http://localhost:3000/pessoas')
         });
     });
 
-
-
-
 function buscarDados() {
     var cpf = document.getElementById('cpf').value 
 
-
-    fetch('http://localhost:3000/pessoas', {
+    fetch('/pessoas', {
         method: 'GET'
     }).then(resposta => resposta.json()).then(dados => {
         let pessoaEncontrada = dados.find(pessoa => pessoa.cpf == cpf)
-
 
         if(pessoaEncontrada) {
             document.getElementById('id').value = pessoaEncontrada.id
@@ -152,20 +88,19 @@ function atualizarDados() {
     let estado = document.getElementById('estado').value
     let telefone = document.getElementById('telefone').value
 
-
-    fetch(`http://localhost:3000/pessoas/${id}`, {
+    fetch(`/pessoas/${id}`, {
         method: 'PUT', //Metodo PUT HTTP
         headers: {
             'Content-Type': 'application/json' //Tipo de conteudo enviado JSON
         },
         body: JSON.stringify({nome: nome, sobrenome: sobrenome, cpf: cpf, email: email, senha: senha, cep: cep, rua: rua, cidade: cidade, estado: estado, telefone: telefone}) //Dados a serem enviados e convertidos
-    }).then(resposta => resposta.JSON) //Converte a resposta para JSON
+    }).then(resposta => resposta.json()) //Converte a resposta para JSON
 }
 
 function deletarDados(){
     let id = document.getElementById('id').value
 
-    fetch(`http://localhost:3000/pessoas/${id}`, {
+    fetch(`/pessoas/${id}`, {
         method: 'DELETE'
     }).then(resposta => resposta.json())
 }
