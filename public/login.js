@@ -4,7 +4,7 @@ function logar(){
     let senha = document.getElementById('senha').value
 
     // Fazer a requisição GET - READ e buscar em pessoa
-    fetch('http://localhost:3000/pessoas').then(resposta => resposta.json()).then(dados => {
+    fetch('/pessoas').then(resposta => resposta.json()).then(dados => {
         // Buscar os usuários e senha que foram digitados e que existem no JSON - FIND
         let usuarios = dados.find(pessoas => pessoas.email == email && pessoas.senha == senha)
         if(usuarios){
@@ -21,7 +21,7 @@ function admin(){
     let senha = document.getElementById('senha').value
 
     // Fazer a requisição GET - READ e buscar em pessoa
-    fetch('http://localhost:3000/pessoas').then(resposta => resposta.json()).then(dados => {
+    fetch('/pessoas').then(resposta => resposta.json()).then(dados => {
         // Buscar os usuários e senha que foram digitados e que existem no JSON - FIND
         let admin = dados.find(pessoas => pessoas.email == email && pessoas.senha == senha && pessoas.admin == 1)
         if(admin){
