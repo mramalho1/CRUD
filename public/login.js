@@ -1,33 +1,25 @@
-function logar(){
+function logar() {
     // Obter os valores do input
-    let email = document.getElementById('email').value
-    let senha = document.getElementById('senha').value
+    let email = document.getElementById('email').value;
+    let senha = document.getElementById('senha').value;
 
-    // Fazer a requisição GET - READ e buscar em pessoa
-    fetch('/pessoas').then(resposta => resposta.json()).then(dados => {
-        // Buscar os usuários e senha que foram digitados e que existem no JSON - FIND
-        let usuarios = dados.find(pessoas => pessoas.email == email && pessoas.senha == senha)
-        if(usuarios){
-            window.location.href = 'bemVindo.html'
-        }else if(admin){
-            alert('Usuário/Senha incorreto(s)!')
-        }
-    })
-}
+    // Fazer a requisição GET
+    fetch('/pessoas')
+        .then(resposta => resposta.json())
+        .then(dados => {
+            // Busca o usuário que tenha o email e senha digitados
+            let usuarioLogado = dados.find(pessoa => pessoa.email == email && pessoa.senha == senha);
 
-function admin(){
-    // Obter os valores do input
-    let email = document.getElementById('email').value
-    let senha = document.getElementById('senha').value
-
-    // Fazer a requisição GET - READ e buscar em pessoa
-    fetch('/pessoas').then(resposta => resposta.json()).then(dados => {
-        // Buscar os usuários e senha que foram digitados e que existem no JSON - FIND
-        let admin = dados.find(pessoas => pessoas.email == email && pessoas.senha == senha && pessoas.admin == 1)
-        if(admin){
-            window.location.href = 'admin.html'
-        }else{
-            alert('Usuário/Senha incorreto(s)!')
-        }
-    })
+            if (usuarioLogado) {
+                // Se encontrou, verifica se é admin (1) ou usuário comum
+                if (usuarioLogado.admin == 1) {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'bemVindo.html';
+                }
+            } else {
+                // Se não encontrou nenhum usuário com esses dados
+                alert('Usuário/Senha incorreto(s)!');
+            }
+        });
 }
