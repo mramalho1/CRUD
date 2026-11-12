@@ -1,31 +1,21 @@
-// Importa as bibliotecas
 const jsonServer = require('json-server');
 const express = require('express');
+const path = require('path');
 
-// Cria a instância do servidor
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 
-// Define a porta (preparado para o Render e Local)
-const porta = process.env.PORT || 3000;
+// Porta dinâmica para o Render ou 3000 localmente
+const port = process.env.PORT || 3000;
 
-// Usa os middlewares padrão do json-server
+// Servir ficheiros estáticos do Front-End (HTML, CSS, JS) na pasta 'public'
+server.use(express.static(path.join(__dirname, 'public')));
+
 server.use(middlewares);
-
-// Configura o servidor para usar a pasta 'public' (Tudo unificado no 'server')
-server.use(express.static('public'));
-
-// Define a rota principal enviando o index.html
-server.get('/', function(req, res) {
-    res.sendFile(__dirname + '/public/index.html');
-});
-
-// IMPORTANTE: O router DEVE ser configurado por último!
-// Se ele ficar antes do 'express.static', o json-server bloqueia o front-end.
 server.use(router);
 
-// Inicia o servidor
-server.listen(porta, () => {
-    console.log(`Servidor rodando na porta ${porta}`);
+server.listen(port, () => {
+    console.log(`▶ Servidor ativo na porta ${port}`);
+    console.log(`Acesse: http://localhost:${port}/index.html`);
 });
