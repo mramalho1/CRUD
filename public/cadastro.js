@@ -36,7 +36,7 @@ function cadastrar(){
     let estado = document.getElementById('estado').value
     let telefone = document.getElementById('telefone').value
     
-    fetch('http://localhost:3000/pessoas', {
+    fetch('/pessoas'', {
         method: 'POST', // Método HTTP utilizando o POST
         headers: {
             'Content-Type': 'application/json' // Tipo do conteúdo enviado JSON
